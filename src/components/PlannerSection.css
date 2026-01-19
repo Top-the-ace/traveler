@@ -1,0 +1,155 @@
+.planner-section {
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    position: relative;
+    border-left: 2px dashed var(--border-color);
+    margin-left: var(--spacing-lg);
+    padding-left: var(--spacing-2xl);
+}
+
+/* Timeline dot */
+.planner-section::before {
+    content: '';
+    position: absolute;
+    left: -11px;
+    /* Center on 2px border */
+    top: var(--spacing-2xl);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--background-light);
+    border: 4px solid var(--secondary-color);
+    z-index: 1;
+}
+
+.planner-section:last-child {
+    border-left-color: transparent;
+}
+
+.planner-header {
+    margin-bottom: var(--spacing-xl);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.planner-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.planner-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.planner-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.planner-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #10b981;
+    /* Green check */
+}
+
+.step-badge {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color var(--transition-base);
+}
+
+/* Completed State */
+.planner-section.completed::before {
+    background: #10b981;
+    border-color: #10b981;
+    content: '✓';
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.planner-section.completed .step-badge {
+    background: #10b981;
+}
+
+.planner-section.completed .planner-title {
+    color: #10b981;
+    text-decoration: line-through;
+}
+
+.planner-section.completed .card-wrapper {
+    opacity: 0.5;
+    filter: grayscale(0.5);
+    transition: all var(--transition-normal);
+}
+
+.planner-section.completed .card-wrapper:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.optional-step .step-badge {
+    background: var(--accent-color);
+}
+
+.optional-step .planner-section::before {
+    border-color: var(--accent-color);
+}
+
+/* Optional + Completed override */
+.planner-section.optional-step.completed .step-badge {
+    background: #10b981;
+}
+
+.planner-section.optional-step.completed::before {
+    border-color: #10b981;
+    background: #10b981;
+}
+
+.planner-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-main);
+    margin-bottom: var(--spacing-xs);
+}
+
+.planner-description {
+    font-size: var(--font-size-lg);
+    color: var(--text-muted);
+    max-width: 600px;
+}
+
+@media (max-width: 768px) {
+    .planner-section {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
+    }
+
+    .planner-section::before {
+        display: none;
+    }
+}

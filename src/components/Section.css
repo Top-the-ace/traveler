@@ -1,0 +1,28 @@
+.category-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+/* Scroll Animations */
+.section-title,
+.card-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-title.visible,
+.card-wrapper.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-wrapper {
+    height: 100%;
+}
